@@ -42,10 +42,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [ -70.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
-length = 0.3
+length = 0.2
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("sword:rotation_degrees")
 tracks/0/interp = 1
@@ -53,10 +66,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -70.0, -23.3333, 70.0 ]
+"values": [ -70.0, 70.0, -70.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionPolygon2D:position")
@@ -65,10 +78,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 20, -57 ), Vector2( 55, -24 ), Vector2( 54, 23 ), Vector2( 21, 56 ) ]
+"values": [ Vector2( 20, -57 ), Vector2( 44, -40 ), Vector2( 58, -15 ), Vector2( 58, 14 ), Vector2( 45, 40 ), Vector2( 21, 56 ), Vector2( 45, 40 ), Vector2( 58, 14 ), Vector2( 59, -15 ), Vector2( 45, -40 ), Vector2( 20, -57 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("CollisionPolygon2D:rotation_degrees")
@@ -77,10 +90,22 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ -70.0, -23.3, 23.3, 70.0 ]
+"values": [ -70.0, -42.0, -14.0, 14.0, 42.0, 70.0, 42.0, 14.0, -14.0, -42.0, -70.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [node name="Sword" type="Area2D" groups=[
@@ -107,3 +132,5 @@ polygon = PoolVector2Array( -56, -16, 136, -16, 104, 16, -56, 16 )
 autoplay = "IDLE"
 anims/IDLE = SubResource( 1 )
 anims/attack = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Sword_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
